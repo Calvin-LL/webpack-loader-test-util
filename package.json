@@ -1,6 +1,6 @@
 {
   "name": "@calvin-l/webpack-loader-test-util",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Webpack loader testing utilities",
   "keywords": [
     "webpack",
