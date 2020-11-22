@@ -42,13 +42,12 @@ export class WebpackTestBundle {
   }
 
   execute(assetName: string): any {
+    const outputPath = this.stats.compilation.outputOptions.path;
     const code = this.readAsset(assetName);
     const resource = "test.js";
     const module = new Module(resource, parentModule);
     // @ts-expect-error using internal function
-    module.paths = Module._nodeModulePaths(
-      path.resolve(__dirname, "../fixtures")
-    );
+    module.paths = Module._nodeModulePaths(outputPath);
     module.filename = resource;
 
     // @ts-expect-error using internal function

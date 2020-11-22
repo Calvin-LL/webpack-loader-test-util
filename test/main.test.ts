@@ -1,63 +1,35 @@
-import { toMatchImageSnapshot } from "jest-image-snapshot";
-import { Sharp } from "sharp";
-import webpack from "webpack";
+import crypto from "crypto";
 
-import compile from "./helpers/compile";
-import convertToPng from "./helpers/convertToPng";
-import getCompiler from "./helpers/getCompiler";
-import readAsset from "./helpers/readAsset";
+import MyWebpackTestCompiler from "./helpers/MyWebpackTestCompiler";
 
-expect.extend({ toMatchImageSnapshot });
+describe.each([4, 5] as const)("main", (webpackVersion) => {
+  it("should compile with basic options", async () => {
+    const compiler = new MyWebpackTestCompiler({ webpackVersion });
+    const bundle = await compiler.compile({});
 
-describe.each([4, 5] as const)(
-  'v%d "processFunction" option',
-  (webpackVersion) => {
-    it("should work with flip", async () => {
-      const compiler = getCompiler(webpackVersion, {
-        processFunction: (sharp: Sharp) => sharp.flip(),
-      });
-      const stats = await compile(webpackVersion, compiler);
+    const pictureBuffer = await bundle.readAssetAsPNG(
+      "Macaca_nigra_self-portrait_large.jpg"
+    );
+    const pictureHash = crypto
+      .createHash("sha256")
+      .update(pictureBuffer)
+      .digest("hex");
 
-      expect(
-        await convertToPng(
-          readAsset(
-            "Macaca_nigra_self-portrait_large.jpg",
-            compiler,
-            stats,
-            true
-          )
-        )
-      ).toMatchImageSnapshot({
-        customDiffConfig: { threshold: 0 },
-        customSnapshotIdentifier: "image-flipped",
-      });
-    });
+    expect(bundle.execute("main.js")).toMatchSnapshot();
+    expect(pictureHash).toMatchSnapshot();
+  });
 
-    it("should work when changing file format", async () => {
-      const compiler = getCompiler(
-        webpackVersion,
-        {
-          processFunction: (sharp: Sharp) => sharp.flip().webp(),
-          toBuffer: false,
-          fileLoaderOptions: { name: "[name].[ext]" },
-        },
-        false
-      );
-      const stats = await compile(webpackVersion, compiler);
+  it("should compile with file content override", async () => {
+    const compiler = new MyWebpackTestCompiler({ webpackVersion });
+    const bundle = await compiler.compile({ fileContent: "__export__ = 3" });
 
-      expect(
-        await convertToPng(
-          readAsset(
-            "Macaca_nigra_self-portrait_large.webp",
-            compiler,
-            stats as webpack.Stats,
-            true
-          )
-        )
-      ).toMatchImageSnapshot({
-        customDiffConfig: { threshold: 0 },
-        customSnapshotIdentifier: "image-flipped-webp",
-      });
-    });
-  }
-);
+    expect(bundle.execute("main.js")).toMatchSnapshot();
+  });
+
+  it("should compile with specific file", async () => {
+    const compiler = new MyWebpackTestCompiler({ webpackVersion });
+    const bundle = await compiler.compile({ entryFileName: "anotherIndex.js" });
+
+    expect(bundle.execute("main.js")).toMatchSnapshot();
+  });
+});

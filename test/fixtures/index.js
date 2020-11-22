@@ -1,1 +1,1 @@
-require("./Macaca_nigra_self-portrait_large.jpg");
+__export__ = require("./Macaca_nigra_self-portrait_large.jpg");

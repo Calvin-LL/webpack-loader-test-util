@@ -76,6 +76,7 @@ export class WebpackTestCompiler {
       compiler.run((error, stats) => {
         const returnResult = (): void => {
           if (error) reject(error);
+          else if (stats.hasErrors()) reject(stats.compilation.errors);
           else {
             const bundle = new WebpackTestBundle({
               webpackVersion: this.webpackVersion,
