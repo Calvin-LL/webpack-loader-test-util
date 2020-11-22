@@ -11,7 +11,7 @@ describe.each([4, 5] as const)("main", (webpackVersion) => {
       "Macaca_nigra_self-portrait_large.jpg"
     );
     const pictureHash = crypto
-      .createHash("sha256")
+      .createHash("md5")
       .update(pictureBuffer)
       .digest("hex");
 

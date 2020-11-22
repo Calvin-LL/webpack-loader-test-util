@@ -6,7 +6,7 @@ Object {
 }
 `;
 
-exports[`main should compile with basic options 2`] = `"4321feb710c57ad8b5e0259f4491cc7e7a80d9a41658f5431039bc393f964de0"`;
+exports[`main should compile with basic options 2`] = `"b2b5f1309d655ca0260df77bb7cae2f6"`;
 
 exports[`main should compile with basic options 3`] = `
 Object {
@@ -14,7 +14,7 @@ Object {
 }
 `;
 
-exports[`main should compile with basic options 4`] = `"4321feb710c57ad8b5e0259f4491cc7e7a80d9a41658f5431039bc393f964de0"`;
+exports[`main should compile with basic options 4`] = `"b2b5f1309d655ca0260df77bb7cae2f6"`;
 
 exports[`main should compile with file content override 1`] = `3`;
 
