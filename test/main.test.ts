@@ -1,22 +1,21 @@
-import crypto from "crypto";
+import { toMatchImageSnapshot } from "jest-image-snapshot";
 
 import MyWebpackTestCompiler from "./helpers/MyWebpackTestCompiler";
+
+expect.extend({ toMatchImageSnapshot });
 
 describe.each([4, 5] as const)("main", (webpackVersion) => {
   it("should compile with basic options", async () => {
     const compiler = new MyWebpackTestCompiler({ webpackVersion });
     const bundle = await compiler.compile({});
 
-    const pictureBuffer = await bundle.readAssetAsPNG(
-      "Macaca_nigra_self-portrait_large.jpg"
-    );
-    const pictureHash = crypto
-      .createHash("md5")
-      .update(pictureBuffer)
-      .digest("hex");
-
     expect(bundle.execute("main.js")).toMatchSnapshot();
-    expect(pictureHash).toMatchSnapshot();
+    expect(
+      await bundle.readAssetAsPNG("Macaca_nigra_self-portrait_large.jpg")
+    ).toMatchImageSnapshot({
+      customDiffConfig: { threshold: 0 },
+      customSnapshotIdentifier: "Macaca_nigra_self-portrait_large",
+    });
   });
 
   it("should compile with file content override", async () => {

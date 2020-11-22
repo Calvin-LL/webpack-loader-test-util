@@ -6,15 +6,11 @@ Object {
 }
 `;
 
-exports[`main should compile with basic options 2`] = `"b2b5f1309d655ca0260df77bb7cae2f6"`;
-
 exports[`main should compile with basic options 3`] = `
 Object {
   "default": "Macaca_nigra_self-portrait_large.jpg",
 }
 `;
-
-exports[`main should compile with basic options 4`] = `"b2b5f1309d655ca0260df77bb7cae2f6"`;
 
 exports[`main should compile with file content override 1`] = `3`;
 
