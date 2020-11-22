@@ -23,6 +23,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "lint": "eslint --ext .ts .",
     "release": "HUSKY_SKIP_HOOKS=1 standard-version",
     "test": "tsc && jest",
     "test-no-build": "jest"
