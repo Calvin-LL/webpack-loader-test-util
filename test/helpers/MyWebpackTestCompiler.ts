@@ -11,8 +11,8 @@ interface MyCompileOptions extends Omit<CompileOptions, "entryFilePath"> {
 }
 
 export default class MyWebpackTestCompiler extends WebpackTestCompiler {
-  compile(optioins?: MyCompileOptions): Promise<WebpackTestBundle> {
-    const { entryFileName = "index.js", fileContentOverride } = optioins ?? {};
+  compile(optioins: MyCompileOptions = {}): Promise<WebpackTestBundle> {
+    const { entryFileName = "index.js", fileContentOverride } = optioins;
     const fixturesDir = path.resolve(__dirname, "..", "fixtures");
 
     this.webpackConfig = {
