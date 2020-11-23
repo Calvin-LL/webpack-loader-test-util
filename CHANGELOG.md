@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/Calvin-LL/webpack-loader-test-util/compare/v1.1.0...v1.2.0) (2020-11-23)
+
+
+### Features
+
+* add throwOnError option for compiler ([90d3e0a](https://github.com/Calvin-LL/webpack-loader-test-util/commit/90d3e0a924942f545744cf08dc32abacfa8ba778))
+
 ## [1.1.0](https://github.com/Calvin-LL/webpack-loader-test-util/compare/v1.0.4...v1.1.0) (2020-11-23)
 
 
