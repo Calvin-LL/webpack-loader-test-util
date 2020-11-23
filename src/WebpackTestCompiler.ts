@@ -20,7 +20,7 @@ interface Options {
 
 export interface CompileOptions {
   entryFilePath: string;
-  fileContent?: string;
+  fileContentOverride?: string;
 }
 
 export class WebpackTestCompiler {
@@ -65,10 +65,10 @@ export class WebpackTestCompiler {
 
   compile({
     entryFilePath,
-    fileContent,
+    fileContentOverride,
   }: CompileOptions): Promise<WebpackTestBundle> {
-    if (fileContent !== undefined)
-      this.overrideFiles[entryFilePath] = fileContent;
+    if (fileContentOverride !== undefined)
+      this.overrideFiles[entryFilePath] = fileContentOverride;
 
     const compiler = this.getCompiler(entryFilePath);
 
