@@ -36,4 +36,22 @@ describe.each([4, 5] as const)("v%d main", (webpackVersion) => {
     expect(bundle.listOutput()).toMatchSnapshot("list");
     expect(bundle.execute("main.js")).toMatchSnapshot("export");
   });
+
+  it("should error but not exit", async () => {
+    const compiler = new MyWebpackTestCompiler({ webpackVersion });
+
+    await expect(
+      // @ts-expect-error passing a number to name to trigger an error
+      compiler.compile({ fileLoaderOptions: { name: 3 } })
+    ).resolves.toBeTruthy();
+  });
+
+  it("should error and exit", async () => {
+    const compiler = new MyWebpackTestCompiler({ webpackVersion });
+
+    await expect(
+      // @ts-expect-error passing a number to name to trigger an error
+      compiler.compile({ fileLoaderOptions: { name: 3 }, throwOnError: true })
+    ).rejects.toBeTruthy();
+  });
 });

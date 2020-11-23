@@ -21,6 +21,7 @@ interface Options {
 export interface CompileOptions {
   entryFilePath: string;
   fileContentOverride?: string;
+  throwOnError?: boolean;
 }
 
 export class WebpackTestCompiler {
@@ -66,6 +67,7 @@ export class WebpackTestCompiler {
   compile({
     entryFilePath,
     fileContentOverride,
+    throwOnError,
   }: CompileOptions): Promise<WebpackTestBundle> {
     if (fileContentOverride !== undefined)
       this.overrideFiles[entryFilePath] = fileContentOverride;
@@ -76,7 +78,8 @@ export class WebpackTestCompiler {
       compiler.run((error, stats) => {
         const returnResult = (): void => {
           if (error) reject(error);
-          else if (stats.hasErrors()) reject(stats.compilation.errors);
+          else if (throwOnError && stats.hasErrors())
+            reject(stats.compilation.errors);
           else {
             const bundle = new WebpackTestBundle({
               webpackVersion: this.webpackVersion,

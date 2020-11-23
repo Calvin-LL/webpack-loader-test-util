@@ -1,3 +1,4 @@
+import { Options } from "file-loader";
 import path from "path";
 
 import {
@@ -8,11 +9,12 @@ import {
 
 interface MyCompileOptions extends Omit<CompileOptions, "entryFilePath"> {
   entryFileName?: string;
+  fileLoaderOptions?: Options;
 }
 
 export default class MyWebpackTestCompiler extends WebpackTestCompiler {
   compile(optioins: MyCompileOptions = {}): Promise<WebpackTestBundle> {
-    const { entryFileName = "index.js", fileContentOverride } = optioins;
+    const { entryFileName = "index.js", fileLoaderOptions } = optioins;
     const fixturesDir = path.resolve(__dirname, "..", "fixtures");
 
     this.webpackConfig = {
@@ -26,6 +28,7 @@ export default class MyWebpackTestCompiler extends WebpackTestCompiler {
               loader: "file-loader",
               options: {
                 name: "[name].[ext]",
+                ...fileLoaderOptions,
               },
             },
           ],
@@ -38,8 +41,8 @@ export default class MyWebpackTestCompiler extends WebpackTestCompiler {
     };
 
     return super.compile({
+      ...optioins,
       entryFilePath: path.resolve(fixturesDir, entryFileName),
-      fileContentOverride,
     });
   }
 }
