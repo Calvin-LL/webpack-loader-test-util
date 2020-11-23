@@ -42,7 +42,7 @@ describe.each([4, 5] as const)("v%d main", (webpackVersion) => {
 
     await expect(
       // @ts-expect-error passing a number to name to trigger an error
-      compiler.compile({ fileLoaderOptions: { name: 3 } })
+      compiler.compile({ fileLoaderOptions: { name: 3 }, throwOnError: false })
     ).resolves.toBeTruthy();
   });
 
@@ -51,7 +51,7 @@ describe.each([4, 5] as const)("v%d main", (webpackVersion) => {
 
     await expect(
       // @ts-expect-error passing a number to name to trigger an error
-      compiler.compile({ fileLoaderOptions: { name: 3 }, throwOnError: true })
+      compiler.compile({ fileLoaderOptions: { name: 3 } })
     ).rejects.toBeTruthy();
   });
 });
