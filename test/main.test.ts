@@ -4,12 +4,13 @@ import MyWebpackTestCompiler from "./helpers/MyWebpackTestCompiler";
 
 expect.extend({ toMatchImageSnapshot });
 
-describe.each([4, 5] as const)("main", (webpackVersion) => {
+describe.each([4, 5] as const)("v%d main", (webpackVersion) => {
   it("should compile with basic options", async () => {
     const compiler = new MyWebpackTestCompiler({ webpackVersion });
     const bundle = await compiler.compile({});
 
-    expect(bundle.execute("main.js")).toMatchSnapshot();
+    expect(bundle.listOutput()).toMatchSnapshot("list");
+    expect(bundle.execute("main.js")).toMatchSnapshot("export");
     expect(
       await bundle.readAssetAsPNG("Macaca_nigra_self-portrait_large.jpg")
     ).toMatchImageSnapshot({
@@ -20,15 +21,19 @@ describe.each([4, 5] as const)("main", (webpackVersion) => {
 
   it("should compile with file content override", async () => {
     const compiler = new MyWebpackTestCompiler({ webpackVersion });
-    const bundle = await compiler.compile({ fileContent: "__export__ = 3" });
+    const bundle = await compiler.compile({
+      fileContentOverride: "__export__ = 3",
+    });
 
-    expect(bundle.execute("main.js")).toMatchSnapshot();
+    expect(bundle.listOutput()).toMatchSnapshot("list");
+    expect(bundle.execute("main.js")).toMatchSnapshot("export");
   });
 
   it("should compile with specific file", async () => {
     const compiler = new MyWebpackTestCompiler({ webpackVersion });
     const bundle = await compiler.compile({ entryFileName: "anotherIndex.js" });
 
-    expect(bundle.execute("main.js")).toMatchSnapshot();
+    expect(bundle.listOutput()).toMatchSnapshot("list");
+    expect(bundle.execute("main.js")).toMatchSnapshot("export");
   });
 });

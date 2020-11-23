@@ -28,6 +28,13 @@ export class WebpackTestBundle {
     return await sharp(assetBuffer).png().toBuffer();
   }
 
+  listOutput(): string[] {
+    const usedFs = (this.compiler.outputFileSystem as unknown) as typeof fs;
+    const outputPath = this.stats.compilation.outputOptions.path;
+
+    return usedFs.readdirSync(outputPath);
+  }
+
   readAsset<T extends boolean, K = T extends true ? Buffer : string>(
     assetName: string,
     readAsBuffer?: T

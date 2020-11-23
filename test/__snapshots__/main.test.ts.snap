@@ -1,29 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`main should compile with basic options 1`] = `
+exports[`v4 main should compile with basic options: export 1`] = `
 Object {
   "default": "Macaca_nigra_self-portrait_large.jpg",
 }
 `;
 
-exports[`main should compile with basic options 3`] = `
+exports[`v4 main should compile with basic options: list 1`] = `
+Array [
+  "Macaca_nigra_self-portrait_large.jpg",
+  "main.js",
+]
+`;
+
+exports[`v4 main should compile with file content override: export 1`] = `3`;
+
+exports[`v4 main should compile with file content override: list 1`] = `
+Array [
+  "main.js",
+]
+`;
+
+exports[`v4 main should compile with specific file: export 1`] = `
+Object {
+  "default": "good",
+}
+`;
+
+exports[`v4 main should compile with specific file: list 1`] = `
+Array [
+  "main.js",
+]
+`;
+
+exports[`v5 main should compile with basic options: export 1`] = `
 Object {
   "default": "Macaca_nigra_self-portrait_large.jpg",
 }
 `;
 
-exports[`main should compile with file content override 1`] = `3`;
+exports[`v5 main should compile with basic options: list 1`] = `
+Array [
+  "Macaca_nigra_self-portrait_large.jpg",
+  "main.js",
+]
+`;
 
-exports[`main should compile with file content override 2`] = `3`;
+exports[`v5 main should compile with file content override: export 1`] = `3`;
 
-exports[`main should compile with specific file 1`] = `
+exports[`v5 main should compile with file content override: list 1`] = `
+Array [
+  "main.js",
+]
+`;
+
+exports[`v5 main should compile with specific file: export 1`] = `
 Object {
   "default": "good",
 }
 `;
 
-exports[`main should compile with specific file 2`] = `
-Object {
-  "default": "good",
-}
+exports[`v5 main should compile with specific file: list 1`] = `
+Array [
+  "main.js",
+]
 `;
