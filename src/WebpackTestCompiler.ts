@@ -67,7 +67,7 @@ export class WebpackTestCompiler {
   compile({
     entryFilePath,
     fileContentOverride,
-    throwOnError,
+    throwOnError = true,
   }: CompileOptions): Promise<WebpackTestBundle> {
     if (fileContentOverride !== undefined)
       this.overrideFiles[entryFilePath] = fileContentOverride;
