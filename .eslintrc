@@ -28,13 +28,13 @@
       }
     ],
     "sort-imports": [
-      "error",
+      "warn",
       {
         "ignoreDeclarationSort": true
       }
     ],
     "import-helpers/order-imports": [
-      "error",
+      "warn",
       {
         "newlinesBetween": "always",
         "groups": ["module", "absolute", "/^@/", "parent", "sibling", "index"],
