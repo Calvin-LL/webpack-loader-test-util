@@ -40,9 +40,6 @@ export class WebpackTestCompiler {
   }
 
   getWebpackConfig(entryFilePath: string): webpack.Configuration {
-    if (this.webpackConfig === undefined)
-      throw new Error("webpackConfig not set");
-
     const { rules, context, outputPath } = this.webpackConfig;
 
     return {
