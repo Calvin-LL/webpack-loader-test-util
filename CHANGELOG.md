@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.2](https://github.com/Calvin-LL/webpack-loader-test-util/compare/v1.3.1...v1.3.2) (2020-11-29)
+
+
+### Bug Fixes
+
+* overriding fs pollutes the global fs ([78f86da](https://github.com/Calvin-LL/webpack-loader-test-util/commit/78f86dadd1dcb0aec7f0b5fbba53565300b4f304))
+
 ### [1.3.1](https://github.com/Calvin-LL/webpack-loader-test-util/compare/v1.3.0...v1.3.1) (2020-11-24)
 
 ## [1.3.0](https://github.com/Calvin-LL/webpack-loader-test-util/compare/v1.2.0...v1.3.0) (2020-11-23)
