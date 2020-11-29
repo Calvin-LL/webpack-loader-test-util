@@ -110,13 +110,16 @@ export class WebpackTestCompiler {
     virtualFileSystem.join = path.join.bind(path);
 
     if (this.overrideFiles && Object.keys(this.overrideFiles).length !== 0) {
+      const fakeFs = { ...fs };
+
       WebpackTestCompiler.overrideReadFiles(
+        fakeFs,
         vol,
         virtualFileSystem,
         this.overrideFiles
       );
 
-      compiler.inputFileSystem = fs;
+      compiler.inputFileSystem = fakeFs;
     }
 
     compiler.outputFileSystem = virtualFileSystem;
@@ -125,6 +128,7 @@ export class WebpackTestCompiler {
   }
 
   private static overrideReadFiles(
+    fakeFs: typeof fs,
     vol: InstanceType<typeof Volume>,
     virtualFileSystem: IFs,
     overrideFiles: Required<Options>["overrideFiles"]
@@ -133,11 +137,11 @@ export class WebpackTestCompiler {
 
     const pathsToOverride = Object.keys(overrideFiles);
 
-    const fsReadFile = fs.readFile;
-    const fsReadFileSync = fs.readFileSync;
+    const fsReadFile = fakeFs.readFile;
+    const fsReadFileSync = fakeFs.readFileSync;
 
     // @ts-expect-error typescript doesn't like overriding imported functions
-    fs.readFile = function (path: string) {
+    fakeFs.readFile = function (path: string) {
       if (pathsToOverride.includes(path))
         // @ts-expect-error this function's arguments' types are ambiguous
         // eslint-disable-next-line prefer-rest-params
@@ -149,7 +153,7 @@ export class WebpackTestCompiler {
     };
 
     // @ts-expect-error typescript doesn't like overriding imported functions
-    fs.readFileSync = function (path) {
+    fakeFs.readFileSync = function (path) {
       if (pathsToOverride.includes(path))
         // @ts-expect-error this function's arguments' types are ambiguous
         // eslint-disable-next-line prefer-rest-params
