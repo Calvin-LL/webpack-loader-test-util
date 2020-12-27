@@ -4,7 +4,7 @@ import path from "path";
 import sharp from "sharp";
 import webpack from "webpack";
 
-export interface Options {
+export interface WebpackTestBundleOptions {
   webpackVersion: 4 | 5;
   stats: webpack.Stats;
   compiler: webpack.Compiler;
@@ -13,11 +13,11 @@ export interface Options {
 const parentModule = module;
 
 export class WebpackTestBundle {
-  readonly webpackVersion: Options["webpackVersion"];
-  readonly stats: Options["stats"];
-  readonly compiler: Options["compiler"];
+  readonly webpackVersion: WebpackTestBundleOptions["webpackVersion"];
+  readonly stats: WebpackTestBundleOptions["stats"];
+  readonly compiler: WebpackTestBundleOptions["compiler"];
 
-  constructor({ webpackVersion, stats, compiler }: Options) {
+  constructor({ webpackVersion, stats, compiler }: WebpackTestBundleOptions) {
     this.webpackVersion = webpackVersion;
     this.stats = stats;
     this.compiler = compiler;

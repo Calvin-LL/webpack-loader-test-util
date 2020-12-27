@@ -12,7 +12,7 @@ interface WebpackConfig {
   outputPath?: Required<webpack.Configuration>["output"]["path"];
 }
 
-export interface Options {
+export interface WebpackTestCompilerOptions {
   webpackVersion: 4 | 5;
   webpackConfig?: WebpackConfig;
   overrideFiles?: DirectoryJSON;
@@ -25,15 +25,15 @@ export interface CompileOptions {
 }
 
 export class WebpackTestCompiler {
-  readonly webpackVersion: Options["webpackVersion"];
-  webpackConfig: Required<Options>["webpackConfig"];
-  overrideFiles: Required<Options>["overrideFiles"];
+  readonly webpackVersion: WebpackTestCompilerOptions["webpackVersion"];
+  webpackConfig: Required<WebpackTestCompilerOptions>["webpackConfig"];
+  overrideFiles: Required<WebpackTestCompilerOptions>["overrideFiles"];
 
   constructor({
     webpackVersion = 4,
     webpackConfig = { rules: [] },
     overrideFiles = {},
-  }: Options) {
+  }: WebpackTestCompilerOptions) {
     this.webpackVersion = webpackVersion;
     this.webpackConfig = webpackConfig;
     this.overrideFiles = overrideFiles;
@@ -131,7 +131,7 @@ export class WebpackTestCompiler {
     fakeFs: typeof fs,
     vol: InstanceType<typeof Volume>,
     virtualFileSystem: IFs,
-    overrideFiles: Required<Options>["overrideFiles"]
+    overrideFiles: Required<WebpackTestCompilerOptions>["overrideFiles"]
   ): void {
     vol.fromJSON(overrideFiles);
 
