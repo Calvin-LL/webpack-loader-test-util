@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/Calvin-LL/webpack-loader-test-util/compare/v1.3.3...v2.0.0) (2020-12-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* change export format
+
+* change export format ([d4a027a](https://github.com/Calvin-LL/webpack-loader-test-util/commit/d4a027a5cf8c01a266862c2c9a430fa52f82e5c9))
+
 ### [1.3.3](https://github.com/Calvin-LL/webpack-loader-test-util/compare/v1.3.2...v1.3.3) (2020-12-27)
 
 ### [1.3.2](https://github.com/Calvin-LL/webpack-loader-test-util/compare/v1.3.1...v1.3.2) (2020-11-29)
