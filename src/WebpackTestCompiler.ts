@@ -12,7 +12,7 @@ interface WebpackConfig {
   outputPath?: Required<webpack.Configuration>["output"]["path"];
 }
 
-interface Options {
+export interface Options {
   webpackVersion: 4 | 5;
   webpackConfig?: WebpackConfig;
   overrideFiles?: DirectoryJSON;

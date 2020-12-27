@@ -4,7 +4,7 @@ import path from "path";
 import sharp from "sharp";
 import webpack from "webpack";
 
-interface Options {
+export interface Options {
   webpackVersion: 4 | 5;
   stats: webpack.Stats;
   compiler: webpack.Compiler;
