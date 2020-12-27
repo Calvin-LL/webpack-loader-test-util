@@ -28,6 +28,7 @@ export default class WebpackTestCompiler {
   readonly webpackVersion: Options["webpackVersion"];
   webpackConfig: Required<Options>["webpackConfig"];
   overrideFiles: Required<Options>["overrideFiles"];
+  BundleClass: typeof WebpackTestBundle = WebpackTestBundle;
 
   constructor({
     webpackVersion = 4,
@@ -78,7 +79,7 @@ export default class WebpackTestCompiler {
           else if (throwOnError && stats.hasErrors())
             reject(stats.compilation.errors);
           else {
-            const bundle = new WebpackTestBundle({
+            const bundle = new this.BundleClass({
               webpackVersion: this.webpackVersion,
               stats,
               compiler,
