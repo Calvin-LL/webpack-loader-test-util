@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/Calvin-LL/webpack-loader-test-util/compare/v2.0.0...v2.1.0) (2020-12-27)
+
+
+### Features
+
+* add ability to change Bundle class ([9a668ef](https://github.com/Calvin-LL/webpack-loader-test-util/commit/9a668ef84f3e48ddf06f26f9a84bf6d84accbd04))
+
 ## [2.0.0](https://github.com/Calvin-LL/webpack-loader-test-util/compare/v1.3.3...v2.0.0) (2020-12-27)
 
 
