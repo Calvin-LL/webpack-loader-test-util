@@ -1,2 +1,2 @@
-export * from "./WebpackTestCompiler";
-export * from "./WebpackTestBundle";
+export * as WebpackTestCompiler from "./WebpackTestCompiler";
+export * as WebpackTestBundle from "./WebpackTestBundle";

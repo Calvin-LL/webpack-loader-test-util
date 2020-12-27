@@ -1,19 +1,16 @@
 import { Options } from "file-loader";
 import path from "path";
 
-import {
-  CompileOptions,
-  WebpackTestBundle,
-  WebpackTestCompiler,
-} from "../../src/index";
+import { WebpackTestBundle, WebpackTestCompiler } from "../../src/index";
 
-interface MyCompileOptions extends Omit<CompileOptions, "entryFilePath"> {
+interface MyCompileOptions
+  extends Omit<WebpackTestCompiler.CompileOptions, "entryFilePath"> {
   entryFileName?: string;
   fileLoaderOptions?: Options;
 }
 
-export default class MyWebpackTestCompiler extends WebpackTestCompiler {
-  compile(optioins: MyCompileOptions = {}): Promise<WebpackTestBundle> {
+export default class MyWebpackTestCompiler extends WebpackTestCompiler.default {
+  compile(optioins: MyCompileOptions = {}): Promise<WebpackTestBundle.default> {
     const { entryFileName = "index.js", fileLoaderOptions } = optioins;
     const fixturesDir = path.resolve(__dirname, "..", "fixtures");
 
