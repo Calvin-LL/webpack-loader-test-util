@@ -28,11 +28,6 @@
     "test": "tsc --project tsconfig.test-build.json && jest",
     "release": "HUSKY_SKIP_HOOKS=1 standard-version"
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
   "engines": {
     "node": ">= 10.13.0"
   },
@@ -54,7 +49,6 @@
     "@typescript-eslint/eslint-plugin": "^4.0.1",
     "@typescript-eslint/parser": "^4.0.1",
     "commitizen": "^4.2.2",
-    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.14.0",
     "eslint-plugin-import-helpers": "^1.1.0",
     "file-loader": "^6.2.0",
