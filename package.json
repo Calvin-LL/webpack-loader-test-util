@@ -42,7 +42,7 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
-    "@types/file-loader": "^5.0.0",
+    "@types/file-loader": "^5.0.1",
     "@types/jest": "^26.0.24",
     "@types/jest-image-snapshot": "^4.3.0",
     "@types/node": "^16.3.1",
