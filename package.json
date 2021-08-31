@@ -47,7 +47,7 @@
     "@types/jest-image-snapshot": "^4.3.1",
     "@types/node": "^16.3.1",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
-    "@typescript-eslint/parser": "^4.29.0",
+    "@typescript-eslint/parser": "^4.30.0",
     "commitizen": "^4.2.4",
     "eslint": "^7.32.0",
     "eslint-plugin-import-helpers": "^1.1.0",
